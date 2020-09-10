@@ -3,4 +3,6 @@
     <string name="otp_message">We will send a OTP message</string>
     <string name="enter_mobile">Enter Mobile Number</string>
     <string name="conform">CONFORM</string>
+    <string name="otp">Enter otp</string>
+
 </resources>
