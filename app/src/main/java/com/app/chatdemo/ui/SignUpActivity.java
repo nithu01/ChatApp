@@ -33,7 +33,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
     Spinner et_country;
@@ -42,6 +41,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     String st_countrycode,st_mobile,mVerificationId;
     FirebaseAuth mAuth;
     TextView txt_otp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -91,10 +91,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         byte[] data = Base64.decode(base64, Base64.DEFAULT);
         return new String(data, "UTF-8");
     }
+
     public  void sendVerificationCode(String mobile){
         PhoneAuthProvider.getInstance().verifyPhoneNumber("+918447182407",60, TimeUnit.SECONDS, this,mCallBack);
 
     }
+
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBack=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
