@@ -93,7 +93,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public  void sendVerificationCode(String mobile){
-        PhoneAuthProvider.getInstance().verifyPhoneNumber("+918447182407",60, TimeUnit.SECONDS, this,mCallBack);
+        PhoneAuthProvider.getInstance().verifyPhoneNumber("+91"+et_mobile.getText().toString(),60, TimeUnit.SECONDS, this,mCallBack);
 
     }
 
@@ -101,16 +101,16 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         @Override
         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
             String code=phoneAuthCredential.getSmsCode();
-          //  Toast.makeText(SignUpActivity.this, code, Toast.LENGTH_LONG).show();
+            Toast.makeText(SignUpActivity.this, code, Toast.LENGTH_LONG).show();
 
             if (code != null) {
                 et_country.setVisibility(View.GONE);
                 et_mobile.setVisibility(View.GONE);
                 et_otp.setVisibility(View.GONE);
                 txt_otp.setVisibility(View.GONE);
-                conform.setVisibility(View.GONE);
+                conform.setText(getResources().getString(R.string.conform));
                 et_otp.setVisibility(View.VISIBLE);
-                verificationCode(code);
+
             }
 
         }
@@ -123,6 +123,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         @Override
         public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
         //    Toast.makeText(SignUpActivity.this, s, Toast.LENGTH_LONG).show();
+            et_country.setVisibility(View.GONE);
+            et_mobile.setVisibility(View.GONE);
+            et_otp.setVisibility(View.GONE);
+            txt_otp.setVisibility(View.GONE);
+            conform.setText(getResources().getString(R.string.conform));
+            et_otp.setVisibility(View.VISIBLE);
 
             super.onCodeSent(s, forceResendingToken);
             mVerificationId = s;
@@ -131,10 +137,18 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        if(view==conform){
-          //  Toast.makeText(SignUpActivity.this,"inside button", Toast.LENGTH_LONG).show();
 
-            sendVerificationCode(et_mobile.getText().toString());
+        if(view==conform){
+//            Toast.makeText(SignUpActivity.this,""+conform.getText().toString(),Toast.LENGTH_SHORT).show();
+            if(conform.getText().toString().equals("Send Otp")){
+                sendVerificationCode(et_mobile.getText().toString());
+//                Toast.makeText(SignUpActivity.this,""+conform.getText().toString(),Toast.LENGTH_SHORT).show();
+
+            }else{
+//                Toast.makeText(SignUpActivity.this,""+conform.getText().toString(),Toast.LENGTH_SHORT).show();
+
+                verificationCode(et_otp.getText().toString());
+            }
         }
     }
     public void verificationCode(String otp){

@@ -23,6 +23,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/movile_no_layout"
         android:orientation="vertical"
         android:layout_marginTop="@dimen/DP200"
         android:background="@drawable/mobile_otp_background">
@@ -41,9 +42,11 @@
             android:layout_width="match_parent"
             android:hint="@string/enter_mobile"
             android:id="@+id/mobile"
-            android:paddingLeft="@dimen/DP10"
+            android:paddingStart="@dimen/DP10"
+            android:maxLength="10"
+            android:inputType="phone"
             android:textColorHint="@color/gray"
-            android:editable="false"
+            android:textColor="@color/black"
             android:layout_marginTop="@dimen/DP30"
             android:background="@drawable/editext_background"
             android:layout_marginLeft="@dimen/DP10"
@@ -58,33 +61,33 @@
             android:textColor="@color/black"
             android:gravity="center"
             android:text="@string/otp_message"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/DP60"
-            android:background="@drawable/button_background"
-            android:layout_marginLeft="@dimen/DP10"
-            android:layout_marginRight="@dimen/DP10"
-            android:layout_marginTop="@dimen/DP30"
-            android:elevation="@dimen/DP10"
-            android:text="@string/conform"
-
-            android:textColor="@color/white"
-            android:id="@+id/conform"/>
-
         <EditText
             android:layout_width="match_parent"
             android:hint="@string/otp"
+            android:inputType="number"
             android:id="@+id/otp"
             android:paddingLeft="@dimen/DP10"
             android:visibility="gone"
+            android:textColor="@color/black"
             android:textColorHint="@color/gray"
-            android:editable="false"
             android:layout_marginTop="@dimen/DP50"
             android:background="@drawable/editext_background"
             android:layout_marginLeft="@dimen/DP10"
             android:layout_marginRight="@dimen/DP10"
             android:layout_height="@dimen/DP60"/>
+
+        <Button
+            android:id="@+id/conform"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DP60"
+            android:layout_marginLeft="@dimen/DP10"
+            android:layout_marginTop="@dimen/DP30"
+            android:layout_marginRight="@dimen/DP10"
+            android:background="@drawable/button_background"
+            android:elevation="@dimen/DP10"
+            android:text="@string/send_otp"
+            android:textColor="@color/white" />
+
 
     </LinearLayout>
 
